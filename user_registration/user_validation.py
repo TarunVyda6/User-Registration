@@ -17,6 +17,11 @@ class UserRegistration:
         return UserRegistration.check_regex(regex, email_id)
 
     @staticmethod
+    def validate_mobile_number(mobile_number):
+        regex = '^[0-9]{2,3} [0-9]{10}$'
+        return UserRegistration.check_regex(regex, mobile_number)
+
+    @staticmethod
     def check_regex(regex, user_detail):
         if re.compile(regex).match(user_detail):
             return True

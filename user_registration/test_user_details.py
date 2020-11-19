@@ -17,11 +17,16 @@ def test_for_validating_last_name(user_name, result):
 
 
 @pytest.mark.parametrize('email_id, result',
-                         [("abc@yahoo.com", True), ("abc-100@yahoo.com", True), ("abc.100@yahoo.com", True),
+                         [("abc@yahoo.com", True),
+                          ("abc-100@yahoo.com", True),
+                          ("abc.100@yahoo.com", True),
                           ("abc111@abc.com", True),
-                          ("abc-100@abc.net", True), ("abc.100@abc.com.au", True), ("abc@1.com", True),
+                          ("abc-100@abc.net", True),
+                          ("abc.100@abc.com.au", True),
+                          ("abc@1.com", True),
                           ("abc@gmail.com.com", True),
-                          ("abc+100@gmail.com", True), ("abc", False),
+                          ("abc+100@gmail.com", True),
+                          ("abc", False),
                           ("abc@.com.my", False),
                           ("abc123@gmail.a", False),
                           ("abc123@.com", False),
@@ -36,3 +41,10 @@ def test_for_validating_last_name(user_name, result):
                           ("abc@gmail.com.aa.au", False)])
 def test_for_validating_email_id(email_id, result):
     assert UserRegistration.validate_email_id(email_id) == result
+
+
+@pytest.mark.parametrize('mobile_number, result',
+                         [("91 9851605588", True), ("92 6584122568", True),
+                          ("9 9851256598", False), ("91 67656415", False)])
+def test_for_validating_mobile_number(mobile_number, result):
+    assert UserRegistration.validate_mobile_number(mobile_number) == result
