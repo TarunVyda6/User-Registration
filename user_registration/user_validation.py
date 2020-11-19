@@ -22,6 +22,11 @@ class UserRegistration:
         return UserRegistration.check_regex(regex, mobile_number)
 
     @staticmethod
+    def validate_password(password):
+        regex = '^(?=.*[0-9])(?=.*[A-Z])(?=[a-zA-Z0-9]*[^a-zA-Z0-9][a-zA-Z0-9]*$).{8,}'
+        return UserRegistration.check_regex(regex, password)
+
+    @staticmethod
     def check_regex(regex, user_detail):
         if re.compile(regex).match(user_detail):
             return True

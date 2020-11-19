@@ -48,3 +48,10 @@ def test_for_validating_email_id(email_id, result):
                           ("9 9851256598", False), ("91 67656415", False)])
 def test_for_validating_mobile_number(mobile_number, result):
     assert UserRegistration.validate_mobile_number(mobile_number) == result
+
+
+@pytest.mark.parametrize('password, result',
+                         [("Akram@123", True), ("Akram3@Kabir", True),
+                          ("Akrhg*98/", False), ("AkramKabir!", False)])
+def test_for_validating_password(password, result):
+    assert UserRegistration.validate_password(password) == result
