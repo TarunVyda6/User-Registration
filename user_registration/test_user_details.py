@@ -11,6 +11,7 @@ def test_for_valid_first_name(user_name):
 def test_for_invalid_first_name(user_name):
     assert UserRegistration.validate_first_name(user_name) == False
 
+
 @pytest.mark.parametrize('user_name', [("Yuvraj"), ("Dhoni"), ("Ganguly"), ("Sachin")])
 def test_for_valid_last_name(user_name):
     assert UserRegistration.validate_last_name(user_name) == True
