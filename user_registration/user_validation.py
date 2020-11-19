@@ -1,4 +1,5 @@
 import re
+from user_registration.user_details_exception import *
 
 
 class UserRegistration:
@@ -28,7 +29,15 @@ class UserRegistration:
 
     @staticmethod
     def check_regex(regex, user_detail):
-        if re.compile(regex).match(user_detail):
-            return True
-        else:
-            return False
+        try:
+            if user_detail == "":
+                raise NoValueException("entered value is blank")
+        except NoValueException as e:
+            return e.message
+        try:
+            if not re.compile(regex).match(user_detail):
+                raise InvalidCredentialsException("invalid credentials")
+            else:
+                return True
+        except InvalidCredentialsException as e:
+            return e.message
